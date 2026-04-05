@@ -1,0 +1,8 @@
+.gradle
+.idea
+build
+run
+.kotlin
+*.jar
+.gradle-home
+tmp
