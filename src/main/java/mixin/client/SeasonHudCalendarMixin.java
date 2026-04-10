@@ -1,6 +1,7 @@
 package mixin.client;
 
-import club.iananderson.seasonhud.impl.accessory.mods.Calendar;
+import club.iananderson.seasonhud.impl.seasons.Calendar;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,7 +14,9 @@ import sereneseasons.api.SSItems;
 @Mixin(value = Calendar.class, remap = false)
 public class SeasonHudCalendarMixin {
     @Inject(method = "validNeedCalendar", at = @At("RETURN"), cancellable = true, remap = false)
-    private static void endlessrise$requireSereneSeasonsCalendarInInventory(PlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
+    private static void endlessrise$requireSereneSeasonsCalendarInInventory(CallbackInfoReturnable<Boolean> cir) {
+        Minecraft mc = Minecraft.getInstance();
+        PlayerEntity player = mc.player;
         cir.setReturnValue(cir.getReturnValueZ() && hasSereneSeasonsCalendar(player));
     }
 

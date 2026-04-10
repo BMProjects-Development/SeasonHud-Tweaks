@@ -85,7 +85,7 @@ dependencies {
 
     implementation fg.deobf("curse.maven:curios-309927:4419403")
     implementation fg.deobf("curse.maven:serene-seasons-291874:4537666")
-    implementation fg.deobf("curse.maven:seasonhud-690971:7845513")
+    implementation fg.deobf("curse.maven:seasonhud-690971:7405962")
     implementation fg.deobf("curse.maven:journeymap-32274:5546771")
 
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
