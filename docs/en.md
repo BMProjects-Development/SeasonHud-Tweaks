@@ -8,7 +8,9 @@
 2. Put it in the client’s `mods` folder with the matching SeasonHud release and its dependencies.
 3. Install a compatible season mod. With Serene Seasons, use its Season Calendar. With Fabric Seasons, install Fabric Seasons Extras for its calendar.
 
-The Forge 1.17.1 port uses the archived SeasonHud release from CurseForge. See the matching file’s dependency version in the release matrix.
+The Forge 1.17.1 port uses the archived SeasonHud release from CurseForge. See the matching file’s dependency version in the [release matrix](../ports.json).
+
+On Forge 1.16.5, SeasonHud 2.0.11 uses the JourneyMap 6 API during startup. For packs on JourneyMap 5 or without JourneyMap, use SeasonHud 1.13.17.
 
 ## In a world
 

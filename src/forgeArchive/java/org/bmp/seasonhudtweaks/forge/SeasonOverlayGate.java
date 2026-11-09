@@ -41,7 +41,7 @@ public final class SeasonOverlayGate {
                 MethodHandles.Lookup lookup = MethodHandles.publicLookup();
                 Class<?> minecraft = Class.forName("net.minecraft.client.Minecraft");
                 Field player = minecraft.getField("f_91074_");
-                PLAYER = MethodHandles.filterArguments(
+                PLAYER = MethodHandles.collectArguments(
                         lookup.unreflectGetter(player).asType(OBJECT_GETTER),
                         0, lookup.unreflect(minecraft.getMethod("m_91087_")).asType(MethodType.methodType(Object.class)));
                 var inventory = player.getType().getMethod("m_150109_");
