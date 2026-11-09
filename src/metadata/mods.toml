@@ -1,0 +1,36 @@
+modLoader = "javafml"
+loaderVersion = "[${loaderVersion},)"
+license = "All Rights Reserved"
+issueTrackerURL = "https://github.com/BMProjects-Development/SeasonHud-Tweaks/issues"
+
+[[mods]]
+modId = "${id}"
+version = "${version}"
+displayName = "${name}"
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/seasonhud-tweaks"
+authors = "BarMaxx"
+description = "${description}"
+displayTest = "IGNORE_ALL_VERSION"
+
+${mixinRegistration}
+
+[[dependencies.${id}]]
+modId = "${loader}"
+${requirement}
+versionRange = "${loaderRange}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${id}]]
+modId = "minecraft"
+${requirement}
+versionRange = "${minecraft}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${id}]]
+modId = "seasonhud"
+${requirement}
+versionRange = "[${seasonHud},${seasonHudLimit})"
+ordering = "AFTER"
+side = "CLIENT"

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "${id}",
+  "version": "${version}",
+  "name": "${name}",
+  "description": "${description}",
+  "authors": ["BarMaxx"],
+  "license": "All Rights Reserved",
+  "contact": {
+    "sources": "https://github.com/BMProjects-Development/SeasonHud-Tweaks",
+    "issues": "https://github.com/BMProjects-Development/SeasonHud-Tweaks/issues"
+  },
+  "environment": "client",
+  "mixins": ["${mixinConfig}"],
+  "depends": {
+    "fabricloader": ">=${loaderVersion}",
+    "java": ">=${java}",
+    "minecraft": ${minecraft},
+    "seasonhud": ">=${seasonHud} <${seasonHudLimit}"
+  }
+}

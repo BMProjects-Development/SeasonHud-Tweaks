@@ -14,7 +14,6 @@ logs/
 run-gametest/
 output/
 __pycache__/
-CONTRIBUTING.md
 .eclipse
 .settings
 *.db

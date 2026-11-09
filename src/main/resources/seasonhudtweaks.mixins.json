@@ -1,7 +1,0 @@
-{
-  "package": "mixin.client",
-  "mixins": [],
-  "client": [
-    "SeasonHudCalendarMixin"
-  ]
-}
