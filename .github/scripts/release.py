@@ -12,6 +12,7 @@ from urllib.parse import quote, urlencode
 from zipfile import ZipFile
 
 from hosting import CurseForge, GitHub, find_release, uploads_in, with_uploads
+from modrinth import Modrinth, publish_modrinth
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -204,8 +205,8 @@ def publish_curseforge(api, base, release, client, version, notes, directory, po
 
 
 def main():
-    if len(sys.argv) != 2 or sys.argv[1] not in ("check", "verify", "publish"):
-        raise ValueError("Usage: release.py check|verify|publish")
+    if len(sys.argv) != 2 or sys.argv[1] not in ("check", "verify", "publish", "publish-modrinth"):
+        raise ValueError("Usage: release.py check|verify|publish|publish-modrinth")
     action = sys.argv[1]
     version, notes, ports = release_inputs()
     if action == "check":
@@ -214,7 +215,7 @@ def main():
                 handle.write(f"version={version}\n")
         print(f"Validated {len(ports)} ports for {NAME} {version}")
         return
-    directory = ROOT / ("release" if action == "publish" else "build/release")
+    directory = ROOT / ("build/release" if action == "verify" else "release")
     digests = validate_artifacts(directory, version, ports)
     if action == "verify":
         print(f"Validated {len(digests)} release artifacts")
@@ -230,6 +231,18 @@ def main():
     if not is_current(api, base, ref, sha):
         print("Skipped an outdated build. The remote ref has advanced.")
         return
+    if action == "publish-modrinth":
+        published = api.request("GET", f"{base}/releases/tags/v{version}")
+        assets = {asset["name"]: asset.get("digest") for asset in published["assets"]}
+        if published["draft"] or any(
+            assets.get(name) != f"sha256:{digest}" for name, digest in digests.items()
+        ):
+            raise ValueError("The Modrinth files must match the published GitHub release")
+        client = Modrinth(os.environ.get("MODRINTH_TOKEN", ""))
+        artifacts = [(port, directory / artifact_name(version, port)) for port in ports]
+        publish_modrinth(client, version, notes, artifacts)
+        return
+
     client = CurseForge(os.environ.get("CURSEFORGE_TOKEN", ""))
     release = publish_github(api, base, version, notes, sha, ref, directory, digests)
     print(f"Published {release['html_url']}", flush=True)

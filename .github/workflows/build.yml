@@ -86,3 +86,9 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
         run: python .github/scripts/release.py publish
+
+      - name: Publish to Modrinth
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+        run: python .github/scripts/release.py publish-modrinth

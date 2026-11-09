@@ -21,3 +21,5 @@ When validating in Minecraft, test an empty inventory, the first hotbar slot, a 
 Update `mod_version` and add matching notes at `changelogs/<version>.md`. GitHub Actions runs on pushes and pull requests. Successful builds of the current default branch or a matching `v<version>` tag publish. The workflow verifies the full matrix, uploads the current version’s artifacts to a draft, then makes the release public. A rebuild of the same version updates only that release and its tag.
 
 The release job uses `GITHUB_TOKEN` and the repository’s `CURSEFORGE_TOKEN` author API secret. CurseForge gets only playable JARs and their exact Minecraft, loader, and client tags. The GitHub release notes record accepted CurseForge upload IDs so a rerun can resume an interrupted set. CurseForge files become public after its review.
+
+The `MODRINTH_TOKEN` Actions secret needs permission to create versions on [SeasonHud Tweaks](https://modrinth.com/mod/seasonhud-tweaks). Modrinth receives one version per playable JAR, with the loader and game tags from the port matrix. The job checks the published checksums and metadata and skips matching uploads on reruns.
