@@ -10,7 +10,7 @@ On Windows, use `gradlew.bat`. Use `-Pport=forge-1.16.5` with `build verifyPorts
 
 ## Compatibility
 
-[ports.json](ports.json) holds the release matrix, loader metadata, Minecraft versions, and the pinned upstream SeasonHud JAR and checksum for each port. The matrix follows the actual upstream JAR metadata and loader releases. Fabric 1.20.3 uses the archived SeasonHud 1.8.6, whose metadata permits that game version. The later files for that branch require 1.20.2. Forge has no 1.20.5 build, the NeoForge SeasonHud file for 1.20.6 requires NeoForge 20.6, and the Fabric SeasonHud files tagged for 1.20.5 require 1.20.6. The upstream 1.20.2–1.20.3 Forge file uses Forge classes. NeoForge 1.20.1 uses the Forge-compatible artifact.
+[ports.json](ports.json) holds the release matrix, loader metadata, Minecraft versions, and the pinned upstream SeasonHud JAR and checksum for each port. The matrix follows the JAR metadata and available loader and dependency releases. The archived Fabric SeasonHud files tagged for 1.20.3 lack a compatible release of their required Forge Config API Port. The Fabric files tagged for 1.20.5 require Minecraft 1.20.6. Forge has no 1.20.5 build, and the NeoForge SeasonHud file for 1.20.6 requires NeoForge 20.6. The upstream 1.20.2–1.20.3 Forge file uses Forge classes. NeoForge 1.20.1 uses the Forge-compatible artifact.
 
 `verifyPorts` uses Mixin to transform the actual upstream Calendar class for each mixin-based port. It checks the exact redirect count and confirms that the detailed display gate still calls its original config getter. For Forge 1.17.1 it checks the three referenced overlays against the archived JAR. These checks run outside Minecraft.
 
